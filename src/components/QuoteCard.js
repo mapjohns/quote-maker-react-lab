@@ -1,4 +1,5 @@
 import React from 'react';
+// import { removeQuote } from '../actions/quotes';
 
 const QuoteCard = (props) =>
   <div>
@@ -6,24 +7,29 @@ const QuoteCard = (props) =>
       <div className="card-block">
         <blockquote className="card-blockquote">
           {/* <p>{Render Quote Content}</p> */}
+          <p>{props.quote.content}</p>
           {/* <footer>- author <cite title="Source Title">{Render Quote Author}</cite></footer> */}
+          <footer>- author <cite title="Source Title">{props.quote.author}</cite></footer>
         </blockquote>
       </div>
       <div className="float-right">
         <div className="btn-group btn-group-sm" role="group" aria-label="Basic example">
           <button
+            onClick={() => props.upvote(props.quote.id)}
             type="button"
             className="btn btn-primary"
           >
             Upvote
           </button>
           <button
+            onClick={() => props.downvote(props.quote.id)}
             type="button"
             className="btn btn-secondary"
           >
             Downvote
           </button>
           <button
+            onClick={() => props.remove(props.quote.id)}
             type="button"
             className="btn btn-danger"
           >
@@ -31,6 +37,7 @@ const QuoteCard = (props) =>
           </button>
         </div>
         {/* <div>Votes: {Render Quote Votes}</div> */}
+        <div>Votes: {props.quote.votes}</div>
       </div>
     </div>
   </div>;
